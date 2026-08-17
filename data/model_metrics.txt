@@ -70,6 +70,90 @@ CV log-space RMSE at selected hyperparams: 0.582 +/- 0.021 across 5 folds (per-f
 ==============================================================================
 ABLATION: baseline vs. with_interactions (val set)
 ==============================================================================
-                   n_model_features  cv_rmse_log  val_r2_dollar_winsorized  val_mae_dollar_winsorized  val_r2_dollar_raw  val_mae_dollar_raw  val_r2_log_winsorized  val_mae_log_winsorized  val_r2_log_raw  val_mae_log_raw
-baseline                      112.0     0.601514                  0.487401                29695.89694           0.248444        35244.307186               0.657718                0.417031        0.652123         0.477421
-with_interactions             121.0     0.581594                  0.575348                27132.42014           0.253504        33259.145648               0.679274                0.395182        0.663492         0.454191
+                   n_model_features  cv_rmse_log  val_r2_dollar_winsorized  val_mae_dollar_winsorized  val_r2_dollar_raw  val_mae_dollar_raw  val_r2_log_winsorized
+baseline                      112.0     0.601514                  0.487401                29695.89694           0.248444        35244.307186               0.657718
+with_interactions             121.0     0.581594                  0.575348                27132.42014           0.253504        33259.145648               0.679274
+
+
+==============================================================================
+CATBOOST (native categorical handling, full-cardinality Country/DevType)
+48 features: 7 numeric, 7 native categorical, 34 binary
+==============================================================================
+
+CV-selected params: {'depth': 4, 'learning_rate': 0.03, 'l2_leaf_reg': 3}
+CV RMSE (log space) at selected params: 0.540 +/- 0.025 (5-fold)
+
+--- TEST (CatBoost, fit on train only) (983 rows) ---
+  winsorized_log     MAE=0.353       RMSE=0.513       R2=0.763
+  raw_log            MAE=0.493       RMSE=0.922       R2=0.646
+  winsorized_dollar  MAE=$    23,503  RMSE=$    34,335  R2=0.688
+  raw_dollar         MAE=$    32,296  RMSE=$    88,110  R2=0.371
+
+--- VAL (CatBoost, final model, train+test refit) (984 rows) ---
+  winsorized_log     MAE=0.355       RMSE=0.538       R2=0.714
+  raw_log            MAE=0.430       RMSE=0.736       R2=0.676
+  winsorized_dollar  MAE=$    24,494  RMSE=$    36,723  R2=0.648
+  raw_dollar         MAE=$    31,306  RMSE=$    96,241  R2=0.293
+
+74 / 984 val rows flagged as outliers
+
+--- VAL, NOT flagged (910 rows) ---
+  winsorized_log     MAE=0.369       RMSE=0.554       R2=0.571
+  raw_log            MAE=0.369       RMSE=0.554       R2=0.571
+  winsorized_dollar  MAE=$    24,680  RMSE=$    36,262  R2=0.556
+  raw_dollar         MAE=$    24,680  RMSE=$    36,262  R2=0.556
+
+--- VAL, FLAGGED outliers (74 rows) ---
+  winsorized_log     MAE=0.192       RMSE=0.281       R2=0.982
+  raw_log            MAE=1.182       RMSE=1.852       R2=0.712
+  winsorized_dollar  MAE=$    22,202  RMSE=$    41,974  R2=0.864
+  raw_dollar         MAE=$   112,783  RMSE=$   327,099  R2=0.108
+
+==============================================================================
+FINAL COMPARISON: ElasticNet (with interactions) vs. CatBoost (val set)
+==============================================================================
+                              val_r2_dollar_winsorized  val_mae_dollar_winsorized  val_r2_dollar_raw  val_mae_dollar_raw  val_r2_log_winsorized
+elasticnet_with_interactions                  0.575348               27132.420140           0.253504        33259.145648               0.679274
+catboost                                      0.648121               24493.983367           0.293162        31305.968179               0.713794
+
+
+==============================================================================
+CATBOOST (native categorical handling, full-cardinality Country/DevType)
+48 features: 7 numeric, 7 native categorical, 34 binary
+==============================================================================
+
+CV-selected params: {'depth': 4, 'learning_rate': 0.03, 'l2_leaf_reg': 3}
+CV RMSE (log space) at selected params: 0.540 +/- 0.025 (5-fold)
+
+--- TEST (CatBoost, fit on train only) (983 rows) ---
+  winsorized_log     MAE=0.353       RMSE=0.513       R2=0.763
+  raw_log            MAE=0.493       RMSE=0.922       R2=0.646
+  winsorized_dollar  MAE=$    23,503  RMSE=$    34,335  R2=0.688
+  raw_dollar         MAE=$    32,296  RMSE=$    88,110  R2=0.371
+
+--- VAL (CatBoost, final model, train+test refit) (984 rows) ---
+  winsorized_log     MAE=0.355       RMSE=0.538       R2=0.714
+  raw_log            MAE=0.430       RMSE=0.736       R2=0.676
+  winsorized_dollar  MAE=$    24,494  RMSE=$    36,723  R2=0.648
+  raw_dollar         MAE=$    31,306  RMSE=$    96,241  R2=0.293
+
+74 / 984 val rows flagged as outliers
+
+--- VAL, NOT flagged (910 rows) ---
+  winsorized_log     MAE=0.369       RMSE=0.554       R2=0.571
+  raw_log            MAE=0.369       RMSE=0.554       R2=0.571
+  winsorized_dollar  MAE=$    24,680  RMSE=$    36,262  R2=0.556
+  raw_dollar         MAE=$    24,680  RMSE=$    36,262  R2=0.556
+
+--- VAL, FLAGGED outliers (74 rows) ---
+  winsorized_log     MAE=0.192       RMSE=0.281       R2=0.982
+  raw_log            MAE=1.182       RMSE=1.852       R2=0.712
+  winsorized_dollar  MAE=$    22,202  RMSE=$    41,974  R2=0.864
+  raw_dollar         MAE=$   112,783  RMSE=$   327,099  R2=0.108
+
+==============================================================================
+FINAL COMPARISON: ElasticNet (with interactions) vs. CatBoost (val set)
+==============================================================================
+                              val_r2_dollar_winsorized  val_mae_dollar_winsorized  val_r2_dollar_raw  val_mae_dollar_raw  val_r2_log_winsorized  val_mae_log_winsorized  val_r2_log_raw  val_mae_log_raw
+elasticnet_with_interactions                  0.575348               27132.420140           0.253504        33259.145648               0.679274                0.395182        0.663492         0.454191
+catboost                                      0.648121               24493.983367           0.293162        31305.968179               0.713794                0.355210        0.676196         0.429697
