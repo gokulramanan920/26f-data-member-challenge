@@ -102,3 +102,28 @@ interview we'll ask about:
 professional developers who answered the compensation question in the **Stack
 Overflow Annual Developer Survey 2025**, published by Stack Exchange under the
 [Open Database License](https://opendatacommons.org/licenses/odbl/1-0/).
+
+---
+
+## My Analysis Process and Methodology
+
+**Data cleaning & feature engineering** (`src/data_prep.py`, `notebooks/01_eda.ipynb`)
+- Cleaned `survey.csv` column-by-column based on what the EDA actually showed: coerced numeric-as-text fields, mapped ordinal buckets (`Age`/`OrgSize`) to numeric midpoints, expanded multi-select language/database fields into top-N binary flags, grouped high-cardinality `Country`/`DevType` into top-N + "Other" (sized by actual coverage, not a round number), and dropped `Currency` as redundant with `Country` (Cramér's V = 0.905).
+- Target: `log1p(annual_salary_usd)`, with outlier bounds computed only from the training split (5th/95th percentile) and applied as a winsorize + explicit flag rather than a blind drop, so nothing about the split leaks into a step meant to be shared/reusable.
+- Started with **ElasticNet** first on purpose: a linear model forces every design decision (encoding, target definition, split protocol) to be fully explainable before adding a second, less transparent model on top of it.
+
+**ElasticNet — feature set & results** (`notebooks/02_modeling.ipynb`, Section 3)
+- Base feature set: 6 numeric + 7 categorical (one-hot) + 34 binary flags → 112 model features.
+- Final feature set adds 9 engineered interaction/self-interaction terms, found via 3 rounds of test-then-prune (e.g. `log_workexp`/`log_yearscode` for a Mincer-curve-shaped experience effect) → 121 model features.
+- Full metrics for both, plus the ablation isolating the interactions' real contribution, in `data/model_metrics.txt` — see line 50 (best ElasticNet, val set) and lines 71–75 (ablation table).
+- Full coefficient list: `data/elasticnet_coefs.txt`.
+
+**CatBoost + SHAP** (`notebooks/02_modeling.ipynb`, Section 4)
+- Same split/target/winsorization as ElasticNet, but a leaner feature set suited to a tree model: full-cardinality `Country`/`DevType` via native `cat_features` (no one-hot, no top-N grouping needed), only the log-transformed seniority terms (raw and log forms are redundant for trees — they're invariant to monotonic transforms), and just 1 of the 9 ElasticNet interaction terms (the one a tree can't easily reconstruct from its own splits).
+- Beat ElasticNet on every validation metric — see line 92 (CatBoost, val set) and lines 113–117 (side-by-side final comparison) in `data/model_metrics.txt`.
+- SHAP corroborates rather than overturns the ElasticNet story (same top features, same direction of effect) — summary/dependence plots at the end of Section 4.
+
+**Future steps, time permitting**
+- Compare the boosting model (CatBoost) against a bagging model (Random Forest) on the same split/features, to see whether the gain is boosting-specific or just "any tree model beats linear here."
+- A small dashboard (React or Panel): predicted-vs-actual scatter, filterable/grouped by category (`Country`, `DevType`, etc.) and by metric, to see where the model is strong or weak visually rather than only from a metrics table.
+- Try a GAM (Generalized Additive Model) for CatBoost-level non-linearity with ElasticNet-level interpretability — a natural next step given the log-transform findings.
