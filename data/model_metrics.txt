@@ -1,0 +1,75 @@
+==============================================================================
+BASELINE (no interactions)
+47 raw input columns (6 numeric) -> 112 one-hot-expanded model features
+==============================================================================
+
+CV-selected l1_ratio=0.5, alpha=0.00163
+CV log-space RMSE at selected hyperparams: 0.602 +/- 0.023 across 5 folds (per-fold: [0.607, 0.56, 0.601, 0.629, 0.611])
+
+--- TEST (model fit on train only) (983 rows) ---
+  winsorized_log     MAE=0.400       RMSE=0.576       R2=0.701
+  raw_log            MAE=0.532       RMSE=0.977       R2=0.603
+  winsorized_dollar  MAE=$    27,521  RMSE=$    41,327  R2=0.548
+  raw_dollar         MAE=$    35,672  RMSE=$    92,767  R2=0.302
+
+--- VAL (final model, train+test refit) (984 rows) ---
+  winsorized_log     MAE=0.417       RMSE=0.588       R2=0.658
+  raw_log            MAE=0.477       RMSE=0.763       R2=0.652
+  winsorized_dollar  MAE=$    29,696  RMSE=$    44,323  R2=0.487
+  raw_dollar         MAE=$    35,244  RMSE=$    99,239  R2=0.248
+
+74 / 984 val rows flagged as outliers
+
+--- VAL, NOT flagged (910 rows) ---
+  winsorized_log     MAE=0.417       RMSE=0.590       R2=0.513
+  raw_log            MAE=0.417       RMSE=0.590       R2=0.513
+  winsorized_dollar  MAE=$    28,337  RMSE=$    40,169  R2=0.456
+  raw_dollar         MAE=$    28,337  RMSE=$    40,169  R2=0.456
+
+--- VAL, FLAGGED outliers (74 rows) ---
+  winsorized_log     MAE=0.415       RMSE=0.570       R2=0.924
+  raw_log            MAE=1.218       RMSE=1.860       R2=0.709
+  winsorized_dollar  MAE=$    46,412  RMSE=$    79,247  R2=0.515
+  raw_dollar         MAE=$   120,191  RMSE=$   333,337  R2=0.073
+
+
+==============================================================================
+WITH interactions (Round 3)
+56 raw input columns (15 numeric) -> 121 one-hot-expanded model features
+==============================================================================
+
+CV-selected l1_ratio=1.0, alpha=0.00127
+CV log-space RMSE at selected hyperparams: 0.582 +/- 0.021 across 5 folds (per-fold: [0.592, 0.546, 0.577, 0.611, 0.582])
+
+--- TEST (model fit on train only) (983 rows) ---
+  winsorized_log     MAE=0.388       RMSE=0.556       R2=0.722
+  raw_log            MAE=0.516       RMSE=0.962       R2=0.615
+  winsorized_dollar  MAE=$    25,953  RMSE=$    37,931  R2=0.619
+  raw_dollar         MAE=$    33,828  RMSE=$    90,228  R2=0.340
+
+--- VAL (final model, train+test refit) (984 rows) ---
+  winsorized_log     MAE=0.395       RMSE=0.569       R2=0.679
+  raw_log            MAE=0.454       RMSE=0.750       R2=0.663
+  winsorized_dollar  MAE=$    27,132  RMSE=$    40,342  R2=0.575
+  raw_dollar         MAE=$    33,259  RMSE=$    98,904  R2=0.254
+
+74 / 984 val rows flagged as outliers
+
+--- VAL, NOT flagged (910 rows) ---
+  winsorized_log     MAE=0.393       RMSE=0.569       R2=0.547
+  raw_log            MAE=0.393       RMSE=0.569       R2=0.547
+  winsorized_dollar  MAE=$    26,279  RMSE=$    37,615  R2=0.523
+  raw_dollar         MAE=$    26,279  RMSE=$    37,615  R2=0.523
+
+--- VAL, FLAGGED outliers (74 rows) ---
+  winsorized_log     MAE=0.417       RMSE=0.577       R2=0.922
+  raw_log            MAE=1.202       RMSE=1.872       R2=0.706
+  winsorized_dollar  MAE=$    37,626  RMSE=$    65,126  R2=0.673
+  raw_dollar         MAE=$   119,095  RMSE=$   335,671  R2=0.060
+
+==============================================================================
+ABLATION: baseline vs. with_interactions (val set)
+==============================================================================
+                   n_model_features  cv_rmse_log  val_r2_dollar_winsorized  val_mae_dollar_winsorized  val_r2_dollar_raw  val_mae_dollar_raw  val_r2_log_winsorized  val_mae_log_winsorized  val_r2_log_raw  val_mae_log_raw
+baseline                      112.0     0.601514                  0.487401                29695.89694           0.248444        35244.307186               0.657718                0.417031        0.652123         0.477421
+with_interactions             121.0     0.581594                  0.575348                27132.42014           0.253504        33259.145648               0.679274                0.395182        0.663492         0.454191

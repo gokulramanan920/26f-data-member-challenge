@@ -1,0 +1,124 @@
+32 / 121 coefficients zeroed out by regularization
+
+                                                                                                       coefficient  abs_magnitude
+binary__salary_flag_low                                                                                  -2.283090       2.283090
+cat_big__country_grouped_India                                                                           -0.709863       0.709863
+cat_big__country_grouped_United States of America                                                         0.671773       0.671773
+cat_big__country_grouped_Switzerland                                                                      0.628868       0.628868
+binary__salary_flag_high                                                                                  0.563153       0.563153
+cat_big__country_grouped_Ukraine                                                                         -0.550416       0.550416
+cat_small__Employment_Student                                                                            -0.501424       0.501424
+cat_big__country_grouped_Brazil                                                                          -0.471082       0.471082
+cat_big__country_grouped_Hungary                                                                         -0.289095       0.289095
+cat_big__country_grouped_Other                                                                           -0.287963       0.287963
+cat_big__country_grouped_United Kingdom of Great Britain and Northern Ireland                             0.255413       0.255413
+num__log_workexp                                                                                          0.246451       0.246451
+num__log_yearscode                                                                                        0.240366       0.240366
+cat_big__country_grouped_Australia                                                                        0.200916       0.200916
+cat_big__country_grouped_Canada                                                                           0.189375       0.189375
+binary__lang_php                                                                                         -0.176393       0.176393
+cat_big__country_grouped_Italy                                                                           -0.172314       0.172314
+binary__db_oracle                                                                                        -0.163364       0.163364
+cat_big__country_grouped_Germany                                                                          0.147016       0.147016
+num__YearsCode                                                                                           -0.140126       0.140126
+cat_big__country_grouped_Denmark                                                                          0.112947       0.112947
+cat_small__Industry_Unknown                                                                              -0.101668       0.101668
+cat_small__Industry_Higher Education                                                                     -0.101541       0.101541
+binary__db_snowflake                                                                                      0.098631       0.098631
+cat_small__Industry_Manufacturing                                                                        -0.097537       0.097537
+num__WorkExp                                                                                             -0.097323       0.097323
+cat_small__RemoteWork_In-person                                                                          -0.089289       0.089289
+cat_big__country_grouped_Romania                                                                         -0.088788       0.088788
+cat_small__EdLevel_Professional degree (JD, MD, Ph.D, Ed.D, etc.)                                         0.085614       0.085614
+binary__db_mariadb                                                                                       -0.084247       0.084247
+binary__lang_java                                                                                        -0.074588       0.074588
+binary__lang_bash_shell_(all_shells)                                                                      0.070775       0.070775
+cat_small__Employment_Independent contractor, freelancer, or self-employed                                0.069986       0.069986
+binary__db_h2                                                                                            -0.069900       0.069900
+cat_big__devtype_grouped_Engineering manager                                                              0.069745       0.069745
+cat_big__country_grouped_Poland                                                                          -0.065777       0.065777
+cat_small__EdLevel_Master’s degree (M.A., M.S., M.Eng., MBA, etc.)                                        0.064672       0.064672
+binary__db_elasticsearch                                                                                  0.064433       0.064433
+binary__lang_powershell                                                                                  -0.061226       0.061226
+cat_big__devtype_grouped_Developer, mobile                                                               -0.058656       0.058656
+binary__db_cosmos_db                                                                                      0.058483       0.058483
+binary__db_mysql                                                                                         -0.057403       0.057403
+num__orgsize_mid                                                                                          0.053784       0.053784
+binary__db_supabase                                                                                      -0.050606       0.050606
+cat_small__Industry_Fintech                                                                               0.049654       0.049654
+num__workexp_x_is_usa                                                                                    -0.048204       0.048204
+binary__db_redis                                                                                          0.047262       0.047262
+num__num_languages                                                                                        0.046645       0.046645
+binary__db_dynamodb                                                                                       0.045352       0.045352
+cat_big__devtype_grouped_Architect, software or solutions                                                 0.045107       0.045107
+binary__db_microsoft_sql_server                                                                          -0.043024       0.043024
+binary__lang_html_css                                                                                    -0.042795       0.042795
+cat_big__devtype_grouped_AI/ML engineer                                                                   0.040942       0.040942
+binary__db_mongodb                                                                                       -0.040690       0.040690
+cat_small__Industry_Other:                                                                                0.036682       0.036682
+cat_big__devtype_grouped_Developer, back-end                                                              0.035637       0.035637
+binary__db_postgresql                                                                                     0.035153       0.035153
+binary__lang_c                                                                                           -0.034979       0.034979
+cat_small__ICorPM_Unknown                                                                                -0.034209       0.034209
+binary__lang_rust                                                                                         0.032505       0.032505
+cat_small__EdLevel_Associate degree (A.A., A.S., etc.)                                                   -0.032240       0.032240
+binary__lang_python                                                                                      -0.032208       0.032208
+binary__lang_typescript                                                                                   0.030464       0.030464
+binary__db_bigquery                                                                                       0.027201       0.027201
+binary__lang_c++                                                                                         -0.026723       0.026723
+cat_big__devtype_grouped_Developer, full-stack                                                           -0.022973       0.022973
+num__is_india_x_is_inperson                                                                              -0.022427       0.022427
+cat_big__devtype_grouped_Developer, desktop or enterprise applications                                   -0.019823       0.019823
+binary__lang_sql                                                                                         -0.019599       0.019599
+cat_small__RemoteWork_Remote                                                                              0.019563       0.019563
+cat_small__Industry_Government                                                                           -0.018278       0.018278
+cat_small__Industry_Media & Advertising Services                                                         -0.016354       0.016354
+num__yearscode_x_num_databases                                                                            0.013726       0.013726
+binary__lang_kotlin                                                                                       0.012921       0.012921
+cat_small__Industry_Internet, Telecomm or Information Services                                            0.012744       0.012744
+binary__db_sqlite                                                                                        -0.012660       0.012660
+cat_big__devtype_grouped_Other                                                                           -0.011484       0.011484
+cat_small__Industry_Software Development                                                                 -0.010806       0.010806
+cat_big__country_grouped_France                                                                           0.009961       0.009961
+num__log_workexp_x_is_manager                                                                             0.009045       0.009045
+num__is_usa_x_has_advdeg                                                                                 -0.008424       0.008424
+binary__lang_go                                                                                           0.008357       0.008357
+cat_small__Industry_Banking/Financial Services                                                            0.007880       0.007880
+cat_small__EdLevel_Bachelor’s degree (B.A., B.S., B.Eng., etc.)                                           0.007748       0.007748
+num__is_usa_x_is_finance                                                                                 -0.003698       0.003698
+cat_small__EdLevel_Secondary school (e.g. American high school, German Realschule or Gymnasium, etc.)    -0.002763       0.002763
+num__is_manager_x_orgsize                                                                                -0.002039       0.002039
+cat_small__Industry_Healthcare                                                                            0.001889       0.001889
+binary__lang_c#                                                                                           0.000610       0.000610
+cat_small__RemoteWork_Your choice (very flexible, you can come in when you want or just as needed)       -0.000000       0.000000
+cat_small__Employment_Employed                                                                            0.000000       0.000000
+cat_small__Industry_Energy                                                                                0.000000       0.000000
+cat_small__Industry_Computer Systems Design and Services                                                 -0.000000       0.000000
+cat_big__devtype_grouped_Developer, embedded applications or devices                                     -0.000000       0.000000
+cat_small__RemoteWork_Unknown                                                                            -0.000000       0.000000
+binary__lang_other                                                                                       -0.000000       0.000000
+cat_small__RemoteWork_Hybrid (some remote, leans heavy to in-person)                                      0.000000       0.000000
+cat_small__RemoteWork_Hybrid (some in-person, leans heavy to flexibility)                                 0.000000       0.000000
+cat_small__ICorPM_People manager                                                                          0.000000       0.000000
+cat_small__ICorPM_Individual contributor                                                                  0.000000       0.000000
+cat_small__Employment_I prefer not to say                                                                 0.000000       0.000000
+cat_small__Employment_Retired                                                                            -0.000000       0.000000
+num__age_mid                                                                                              0.000000       0.000000
+cat_small__Industry_Insurance                                                                             0.000000       0.000000
+cat_small__Industry_Transportation, or Supply Chain                                                       0.000000       0.000000
+cat_small__EdLevel_Unknown                                                                               -0.000000       0.000000
+cat_small__Industry_Retail and Consumer Services                                                         -0.000000       0.000000
+cat_big__devtype_grouped_Developer, front-end                                                            -0.000000       0.000000
+cat_small__EdLevel_Some college/university study without earning a degree                                -0.000000       0.000000
+cat_big__country_grouped_Austria                                                                          0.000000       0.000000
+cat_small__EdLevel_Primary/elementary school                                                             -0.000000       0.000000
+cat_big__country_grouped_Czech Republic                                                                  -0.000000       0.000000
+cat_small__EdLevel_Other (please specify):                                                                0.000000       0.000000
+cat_big__country_grouped_Netherlands                                                                      0.000000       0.000000
+binary__lang_javascript                                                                                   0.000000       0.000000
+num__num_databases                                                                                        0.000000       0.000000
+cat_big__country_grouped_Spain                                                                           -0.000000       0.000000
+cat_big__country_grouped_Sweden                                                                          -0.000000       0.000000
+cat_small__Employment_Not employed                                                                       -0.000000       0.000000
+cat_big__devtype_grouped_DevOps engineer or professional                                                  0.000000       0.000000
+binary__db_other                                                                                          0.000000       0.000000
